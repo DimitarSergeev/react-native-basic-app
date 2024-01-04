@@ -16,13 +16,13 @@ const ProductPagerView = ({ images }) => {
       >
         {images.map((image, index) => {
           return (
-            <View
-              key={index}
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            // <View
+            //   key={index}
+            //   style={{
+            //     justifyContent: "center",
+            //     alignItems: "center",
+            //   }}
+            // >
               <Image
                 source={{ uri: image }}
                 resizeMode="contain"
@@ -31,7 +31,7 @@ const ProductPagerView = ({ images }) => {
                   height: 350,
                 }}
               />
-            </View>
+            // </View>
           );
         })}
       </PagerView>

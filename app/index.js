@@ -4,8 +4,8 @@ import { Stack, useRouter } from "expo-router";
 
 import { COLORS, SIZES, icons, images } from "../constants";
 import {
-  Nearbyjobs,
-  Popularjobs,
+  Products,
+  PopularProducts,
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
@@ -43,11 +43,11 @@ const Home = () => {
               }
             }}
           />
-          <Popularjobs
+          <PopularProducts
             setActiveCategory={setActiveCategory}
             activeCategory={activeCategory}
           />
-          <Nearbyjobs
+          <Products
             setActiveCategory={setActiveCategory}
             activeCategory={activeCategory}
           />

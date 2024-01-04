@@ -21,10 +21,10 @@ import {
 import { COLORS, SIZES, icons } from "../../constants";
 
 import useFetch from "../../hook/useFetch";
-import ProductPagerView from "../../components/jobdetails/pagerView/PagerView";
+import ProductPagerView from "../../components/productdetails/pagerView/PagerView";
 
 const ProductDetails = () => {
-  const {id} = useLocalSearchParams();
+  const { id } = useLocalSearchParams();
   const router = useRouter();
   const { data, loading, error, refetch } = useFetch(id, "current_product");
   const tabs = ["About", "Specifics"];
@@ -32,10 +32,10 @@ const ProductDetails = () => {
   const displayTabContent = () => {
     switch (selectedTab) {
       case "Specifics":
-        return <Specifics title={"Specifics"} product={data} />
+        return <Specifics title={"Specifics"} product={data} />;
         break;
       case "About":
-        return <ProductPagerView images={data.images}/>
+        return <ProductPagerView images={data.images} />;
         break;
       default:
         break;

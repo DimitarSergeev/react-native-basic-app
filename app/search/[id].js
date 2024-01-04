@@ -18,7 +18,7 @@ import useFetch from "../../hook/useFetch";
 const ProductSearch = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-  const productPerPage = 3;
+  const productPerPage = 1;
   const [page, setPage] = useState(1);
   const { data, isLoading, error, refetch } = useFetch(id, "search");
   const [pageResults, setPageResults] = useState([]);

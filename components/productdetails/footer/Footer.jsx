@@ -15,7 +15,7 @@ const Footer = ({url}) => {
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.applyBtn}>
-        <Text style={styles.applyBtnText}>Add to cart</Text>
+        <Text style={styles.applyBtnText}>Добави в количката</Text>
       </TouchableOpacity>
     </View>
   );

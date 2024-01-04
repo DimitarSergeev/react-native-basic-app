@@ -27,14 +27,14 @@ const ProductDetails = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { data, loading, error, refetch } = useFetch(id, "current_product");
-  const tabs = ["About", "Specifics"];
+  const tabs = ["Снимки", "Описание"];
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const displayTabContent = () => {
     switch (selectedTab) {
-      case "Specifics":
-        return <Specifics title={"Specifics"} product={data} />;
+      case "Описание":
+        return <Specifics title={"Описание"} product={data} />;
         break;
-      case "About":
+      case "Снимки":
         return <ProductPagerView images={data.images} />;
         break;
       default:

@@ -37,8 +37,8 @@ const Welcome = ({
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.userName}>Hello Dimitar</Text>
-        <Text style={styles.welcomeMessage}>Find your perfect product</Text>
+        <Text style={styles.userName}>Здравей, Dimitar</Text>
+        <Text style={styles.welcomeMessage}>Намери перфектия продукт </Text>
       </View>
 
       <View style={styles.searchContainer}>

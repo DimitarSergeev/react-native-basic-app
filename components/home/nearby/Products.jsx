@@ -24,9 +24,9 @@ const Products = ({  activeCategory }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Products</Text>
+        <Text style={styles.headerTitle}>Продукти</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>View all</Text>
+          <Text style={styles.headerBtn}>Виж всички</Text>
         </TouchableOpacity>
       </View>
 

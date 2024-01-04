@@ -10,7 +10,7 @@ import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 import axios from "axios";
 
-import { ScreenHeaderBtn, NearbyJobCard } from "../../components";
+import { ScreenHeaderBtn, ProductCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
 import useFetch from "../../hook/useFetch";
@@ -31,7 +31,7 @@ const ProductSearch = () => {
       handleSearch();
     }
   }, [data, page]);
-
+    console.log(data);
   const handleSearch = async () => {
     let products = [...data?.products];
     const startIndex = (page - 1) * productPerPage;
@@ -71,7 +71,7 @@ const ProductSearch = () => {
       <FlatList
         data={pageResults}
         renderItem={({ item }) => (
-          <NearbyJobCard
+          <ProductCard
             item={item}
             key={item.id}
             handleNavigate={() => router.push(`/product-details/${item.id}`)}

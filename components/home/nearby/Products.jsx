@@ -25,7 +25,9 @@ const Products = ({  activeCategory }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Продукти</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => router.push(`/products-list/${activeCategory}`)}
+        >
           <Text style={styles.headerBtn}>Виж всички</Text>
         </TouchableOpacity>
       </View>
@@ -36,7 +38,7 @@ const Products = ({  activeCategory }) => {
         ) : error ? (
           <Text style={styles.error}>Error fetching data</Text>
         ) : (
-          data?.products?.map((item) => (
+          data?.map((item) => (
             <ProductCard
               key={item.id}
               item={item}

@@ -16,7 +16,11 @@ import PopularProductCard from "../../common/cards/popular/PopularProductCard";
 import useFetch from "../../../hook/useFetch";
 const PopularProducts = ({ setActiveCategory, activeCategory }) => {
   const router = useRouter();
-  const { data, isLoading, error, refetch } = useFetch(179, "products");
+  
+  const { data, isLoading, error, refetch } = useFetch(
+    activeCategory,
+    "products"
+  );
   useEffect(() => {
     refetch();
   }, [activeCategory]);
@@ -24,7 +28,9 @@ const PopularProducts = ({ setActiveCategory, activeCategory }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Популярни продукти</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => router.push(`/products-list/${activeCategory}`)}
+        >
           <Text style={styles.headerBtn}>Виж всички</Text>
         </TouchableOpacity>
       </View>

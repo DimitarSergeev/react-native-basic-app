@@ -15,24 +15,24 @@ import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
 import useFetch from "../../hook/useFetch";
 
-const ProductSearch = () => {
-  const { id } = useLocalSearchParams();
+const ProductList = () => {
+  const { category_id } = useLocalSearchParams();
   const router = useRouter();
   const productPerPage = 1;
   const [page, setPage] = useState(1);
-  const { data, isLoading, error, refetch } = useFetch(id, "search");
+  const { data, isLoading, error, refetch } = useFetch(category_id, "products");
   const [pageResults, setPageResults] = useState([]);
   const [pages, setPages] = useState(1);
 
   useEffect(() => {
-    if (data?.products) {
-      const calculatedPages = Math.ceil(data.products.length / productPerPage);
+    if (data) {
+      const calculatedPages = Math.ceil(data?.length / productPerPage);
       setPages(calculatedPages);
-      handleSearch();
+      handleProductsPerPage();
     }
-  }, [data, page]);
-  const handleSearch = async () => {
-    let products = [...data?.products];
+  }, [data, page, category_id]);
+  const handleProductsPerPage = async () => {
+    let products = [...data];
     const startIndex = (page - 1) * productPerPage;
     const endIndex = startIndex + productPerPage;
 
@@ -76,12 +76,12 @@ const ProductSearch = () => {
             handleNavigate={() => router.push(`/product-details/${item.id}`)}
           />
         )}
-        keyExtractor={(item) => item.job_id}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={{ padding: SIZES.medium, rowGap: SIZES.medium }}
         ListHeaderComponent={() => (
           <>
             <View style={styles.container}>
-              <Text style={styles.searchTitle}>{id}</Text>
+              <Text style={styles.searchTitle}>{category_id}</Text>
             </View>
             <View style={styles.loaderContainer}>
               {isLoading ? (
@@ -128,4 +128,4 @@ const ProductSearch = () => {
   );
 };
 
-export default ProductSearch;
+export default ProductList;

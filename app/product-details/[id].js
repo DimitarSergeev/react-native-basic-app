@@ -22,8 +22,6 @@ const ProductDetails = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { data, loading, error, refetch } = useFetch(id, "current_product");
-  console.log(data, loading, error);
-
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
   const [count, setCount] = useState(1);
@@ -33,7 +31,6 @@ const ProductDetails = () => {
       <Stack.Screen
         options={{
           headerShown: false,
-          
         }}
       />
       {loading ? (
@@ -43,7 +40,7 @@ const ProductDetails = () => {
       ) : data.length == 0 ? (
         <Text>No data found</Text>
       ) : (
-        <ProductPagerView images={data.images} />
+        <ProductPagerView images={data.images || []} />
       )}
       <SafeAreaView
         edges={["top"]}
@@ -117,7 +114,7 @@ const ProductDetails = () => {
       >
         <View style={{ padding: 16, gap: 16, flex: 1 }}>
           <Text style={{ fontSize: 20, fontWeight: "600", color: colors.text }}>
-            {data.title}
+            {data?.title?.rendered}
           </Text>
 
           <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>

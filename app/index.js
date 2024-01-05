@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { View, ScrollView, SafeAreaView } from "react-native";
+import { useEffect, useState } from "react";
+import { View, ScrollView, SafeAreaView, Text } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, SIZES, icons, images } from "../constants";
@@ -9,10 +9,17 @@ import {
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
+import useFetch from "../hook/useFetch";
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState("smartphones");
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const { data, loading, error, refetch } = useFetch("", "product_cat");
+  useEffect(() => {
+    if (data) {
+      setActiveCategory(data[0]?.id);
+    }
+  }, [data]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -42,15 +49,22 @@ const Home = () => {
                 router.push(`/search/${search}`);
               }
             }}
+            data={data}
           />
-          <PopularProducts
-            setActiveCategory={setActiveCategory}
-            activeCategory={activeCategory}
-          />
-          <Products
-            setActiveCategory={setActiveCategory}
-            activeCategory={activeCategory}
-          />
+          {loading ? (
+            <Text>Loading...</Text>
+          ) : (
+            <>
+              <PopularProducts
+                setActiveCategory={setActiveCategory}
+                activeCategory={activeCategory}
+              />
+              <Products
+                setActiveCategory={setActiveCategory}
+                activeCategory={activeCategory}
+              />
+            </>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

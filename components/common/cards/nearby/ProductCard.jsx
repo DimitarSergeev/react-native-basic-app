@@ -18,10 +18,10 @@ const ProductCard = ({  item, handleNavigate }) => {
       </TouchableOpacity>
       <View style={styles.textContainer}>
         <Text style={styles.jobName} numberOfLines={1}>
-          {item.title}
+          {item.title.rendered}
         </Text>
         <Text style={styles.jobType} numberOfLines={1}>
-          {item.description}
+          {item.content.rendered}
         </Text>
       </View>
     </TouchableOpacity>

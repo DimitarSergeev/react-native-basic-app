@@ -18,23 +18,11 @@ const Welcome = ({
   setActiveCategory,
   activeCategory,
   handleSearch,
+  data
 }) => {
   const router = useRouter();
-  const { data, loading, error, refetch } = useFetch("", "product_cat");
-  const productCategories = [
-    "smartphones",
-    "laptops",
-    "fragrances",
-    "skincare",
-    "groceries",
-    "home-decoration",
-    "furniture",
-    "tops",
-
-    "automotive",
-    "motorcycle",
-    "lighting",
-  ];
+  
+ 
   return (
     <View>
       <View style={styles.container}>

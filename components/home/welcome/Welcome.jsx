@@ -11,6 +11,7 @@ import {
 import styles from "./welcome.style";
 import { useRouter } from "expo-router";
 import { icons, SIZES } from "../../../constants";
+import useFetch from "../../../hook/useFetch";
 const Welcome = ({
   search,
   setSearch,
@@ -19,7 +20,7 @@ const Welcome = ({
   handleSearch,
 }) => {
   const router = useRouter();
-
+  const { data, loading, error, refetch } = useFetch("", "product_cat");
   const productCategories = [
     "smartphones",
     "laptops",
@@ -67,19 +68,19 @@ const Welcome = ({
 
       <View style={styles.tabsContainer}>
         <FlatList
-          data={productCategories}
+          data={data}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.tab(activeCategory, item)}
               onPress={() => {
-                setActiveCategory(item);
+                setActiveCategory(item.id);
                 // router.push(`/search/${item}`);
               }}
             >
-              <Text style={styles.tabText(activeCategory, item)}>{item}</Text>
+              <Text style={styles.tabText(activeCategory, item)}>{item.name}</Text>
             </TouchableOpacity>
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />

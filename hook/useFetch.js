@@ -6,14 +6,15 @@ const useFetch = ( query,type ) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   let url = '';
-  if (type == 'search') {
-    url = `https://dummyjson.com/products/search?q=${query}`;
-  }else if(type == 'categories'){
-    url = `https://dummyjson.com/products/category/${query}`;
-  }else if (type == 'products') {
-    url = `https://dummyjson.com/products/category/${query}`;
+  if (type == 'products') {
+    url = `https://mon-cher.eu/wp-json/wp/v2/product?product_cat=${query}&_fields=id,title,content`;
   }else if (type == 'current_product') {
-    url = `https://dummyjson.com/products/${query}`;
+    url = [
+      `https://mon-cher.eu/wp-json/wp/v2/product/${query}?_fields=id,title,content`,
+      "https://mon-cher.eu/wp-json/wp/v2/media?parent=28828&_fields=source_url",
+    ];
+  }else if (type == 'product_cat') {
+    url = "https://mon-cher.eu/wp-json/wp/v2/product_cat";
   }
   const options = {
     method: "GET",

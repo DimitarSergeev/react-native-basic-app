@@ -17,7 +17,7 @@ const PopularProductCard = ({ item, selectedJob, handleCardPress }) => {
         />
       </TouchableOpacity>
       <Text style={styles.companyName} numberOfLines={1}>
-        {item.title}
+        {item.title.rendered}
       </Text>
 
       <View style={styles.infoContainer}>

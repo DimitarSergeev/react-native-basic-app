@@ -16,10 +16,7 @@ import PopularProductCard from "../../common/cards/popular/PopularProductCard";
 import useFetch from "../../../hook/useFetch";
 const PopularProducts = ({ setActiveCategory, activeCategory }) => {
   const router = useRouter();
-  const { data, isLoading, error, refetch } = useFetch(
-    activeCategory,
-    "products"
-  );
+  const { data, isLoading, error, refetch } = useFetch(179, "products");
   useEffect(() => {
     refetch();
   }, [activeCategory]);
@@ -39,9 +36,14 @@ const PopularProducts = ({ setActiveCategory, activeCategory }) => {
           <Text style={styles.error}>Error fetching data</Text>
         ) : (
           <FlatList
-            data={data.products}
+            data={data.slice(0, 5)}
             renderItem={({ item }) => (
-              <PopularProductCard item={item} handleCardPress={() => {}} />
+              <PopularProductCard
+                item={item}
+                handleCardPress={() =>
+                  router.push(`/product-details/${item.id}`)
+                }
+              />
             )}
             keyExtractor={(item) => item?.id}
             contentContainerStyle={{ columnGap: SIZES.medium }}

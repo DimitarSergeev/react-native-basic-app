@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, ScrollView, SafeAreaView, Text } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useNavigation, useRouter } from "expo-router";
 
 import { COLORS, SIZES, icons, images } from "../constants";
 import {
@@ -20,7 +20,7 @@ const Home = () => {
       setActiveCategory(data[0]?.id);
     }
   }, [data]);
-
+const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -28,7 +28,7 @@ const Home = () => {
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
+            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" handlePress={()=> navigation.openDrawer()}/>
           ),
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />

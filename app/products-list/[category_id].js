@@ -20,7 +20,7 @@ const ProductList = () => {
   const router = useRouter();
   const productPerPage = 1;
   const [page, setPage] = useState(1);
-  const { data, isLoading, error, refetch } = useFetch(category_id, "products");
+  const { data, loading, error, refetch } = useFetch(category_id, "products");
   const [pageResults, setPageResults] = useState([]);
   const [pages, setPages] = useState(1);
 
@@ -84,8 +84,8 @@ const ProductList = () => {
               <Text style={styles.searchTitle}>{category_id}</Text>
             </View>
             <View style={styles.loaderContainer}>
-              {isLoading ? (
-                <ActivityIndicator size="large" color={COLORS.primary} />
+              {loading ? (
+                <ActivityIndicator size="large" color={COLORS.tertiary} />
               ) : (
                 error && <Text>Oops something went wrong</Text>
               )}

@@ -32,45 +32,7 @@ const Layout = () => {
           drawerActiveBackgroundColor: "#FF7754",
         }}
       >
-        <Drawer.Screen
-          name="index"
-          options={{
-            drawerLabel: "Начало",
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="home-outline" size={size} color={color} />
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name="news"
-          options={{
-            drawerLabel: "Блог",
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="newspaper-outline" size={size} color={color} />
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name="profile"
-          options={{
-            drawerLabel: "Профил",
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name="product-details/[id]"
-          options={{
-            drawerLabel: "For remove",
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            ),
-            header: () => null,
-            headerShown: false,
-          }}
-
-        />
+       
       </Drawer>
     </GestureHandlerRootView>
   );

@@ -20,7 +20,7 @@ const ProductSearch = () => {
   const router = useRouter();
   const productPerPage = 1;
   const [page, setPage] = useState(1);
-  const { data, isLoading, error, refetch } = useFetch(id, "search");
+  const { data, loading, error, refetch } = useFetch(id, "search");
   const [pageResults, setPageResults] = useState([]);
   const [pages, setPages] = useState(1);
 
@@ -84,8 +84,8 @@ const ProductSearch = () => {
               <Text style={styles.searchTitle}>{id}</Text>
             </View>
             <View style={styles.loaderContainer}>
-              {isLoading ? (
-                <ActivityIndicator size="large" color={COLORS.primary} />
+              {loading ? (
+                <ActivityIndicator size="large" color={COLORS.tertiary} />
               ) : (
                 error && <Text>Oops something went wrong</Text>
               )}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, ScrollView, SafeAreaView, Text } from "react-native";
+import { View, ScrollView, SafeAreaView, Text, ActivityIndicator } from "react-native";
 import { Stack, useNavigation, useRouter } from "expo-router";
 
 import { COLORS, SIZES, icons, images } from "../constants";
@@ -28,7 +28,11 @@ const navigation = useNavigation();
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" handlePress={()=> navigation.openDrawer()}/>
+            <ScreenHeaderBtn
+              iconUrl={icons.menu}
+              dimension="60%"
+              handlePress={() => navigation.openDrawer()}
+            />
           ),
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
@@ -52,7 +56,7 @@ const navigation = useNavigation();
             data={data}
           />
           {loading ? (
-            <Text>Loading...</Text>
+            <ActivityIndicator size={"large"} color={"#FF7754"} />
           ) : (
             <>
               <PopularProducts

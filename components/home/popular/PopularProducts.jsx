@@ -17,13 +17,14 @@ import useFetch from "../../../hook/useFetch";
 const PopularProducts = ({ setActiveCategory, activeCategory }) => {
   const router = useRouter();
   
-  const { data, isLoading, error, refetch } = useFetch(
+  const { data, loading, error, refetch } = useFetch(
     activeCategory,
     "products"
   );
   useEffect(() => {
     refetch();
   }, [activeCategory]);
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -36,8 +37,8 @@ const PopularProducts = ({ setActiveCategory, activeCategory }) => {
       </View>
 
       <View style={styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
+        {loading ? (
+          <ActivityIndicator size="large" color={COLORS.tertiary} />
         ) : error ? (
           <Text style={styles.error}>Error fetching data</Text>
         ) : (

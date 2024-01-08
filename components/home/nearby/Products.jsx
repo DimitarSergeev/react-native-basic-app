@@ -14,7 +14,7 @@ import useFetch from "../../../hook/useFetch";
 import ProductCard from "../../common/cards/nearby/ProductCard";
 const Products = ({  activeCategory }) => {
   const router = useRouter();
-  const { data, isLoading, error, refetch } = useFetch(
+  const { data, loading, error, refetch } = useFetch(
     activeCategory,
     "products"
   );
@@ -33,8 +33,8 @@ const Products = ({  activeCategory }) => {
       </View>
 
       <View style={styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
+        {loading ? (
+          <ActivityIndicator size="large" color={COLORS.tertiary} />
         ) : error ? (
           <Text style={styles.error}>Error fetching data</Text>
         ) : (

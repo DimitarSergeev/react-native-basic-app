@@ -31,9 +31,8 @@ const Layout = () => {
           drawerActiveTintColor: "#fff",
           drawerActiveBackgroundColor: "#FF7754",
         }}
-      >
-       
-      </Drawer>
+        
+      ></Drawer>
     </GestureHandlerRootView>
   );
 };

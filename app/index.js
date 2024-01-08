@@ -27,16 +27,14 @@ const navigation = useNavigation();
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerLeft: () => (
+          headerRight: () => (
             <ScreenHeaderBtn
               iconUrl={icons.menu}
               dimension="60%"
               handlePress={() => navigation.openDrawer()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
-          ),
+        
           headerTitle: "",
         }}
       />

@@ -56,7 +56,7 @@ const ProductSearch = () => {
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerLeft: () => (
+          headerRight: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
               dimension="60%"

@@ -15,7 +15,7 @@ const ProductPagerView = ({ images }) => {
         }}
       >
         {images.map((image, i) => {
-          return <Image key={i} source={{ uri: image }} style={{ flex: 1 }} />;
+          return <Image key={i} source={{ uri: image.src }} style={{ flex: 1 }} />;
         })}
       </PagerView>
     </View>

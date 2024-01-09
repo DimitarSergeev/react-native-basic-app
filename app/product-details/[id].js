@@ -3,6 +3,7 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
+  useWindowDimensions,
 } from "react-native";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useState, useCallback } from "react";
@@ -12,20 +13,21 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import HTML from "react-native-render-html";
 import { StatusBar } from "expo-status-bar";
 import { COLORS, icons } from "../../constants";
 import useFetch from "../../hook/useFetch";
 import ProductPagerView from "../../components/productdetails/pagerView/PagerView";
 import { useTheme } from "@react-navigation/native";
 const ProductDetails = () => {
-  const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "3XL"];
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { data, loading, error, refetch } = useFetch(id, "current_product");
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
   const [count, setCount] = useState(1);
-  const [size, setSize] = useState(SIZES[0]);
+  const [size, setSize] = useState('');
+  const { width } = useWindowDimensions();
   return (
     <View style={{ flex: 1 }}>
       <Stack.Screen
@@ -109,84 +111,62 @@ const ProductDetails = () => {
           backgroundColor: colors.background,
         }}
         handleIndicatorStyle={{
-          backgroundColor: colors.primary,
+          backgroundColor: COLORS.tertiary,
         }}
       >
         <View style={{ padding: 16, gap: 16, flex: 1 }}>
           <Text style={{ fontSize: 20, fontWeight: "600", color: colors.text }}>
-            {data?.title?.rendered}
+            {data?.name}
           </Text>
 
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-            <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: "row", gap: 2 }}>
-                {new Array(5).fill("").map((_, i) => (
-                  <Icons
-                    key={i}
-                    name={i < 3 ? "star" : "star-border"}
-                    color="#facc15"
-                    size={20}
-                  />
-                ))}
-              </View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: colors.text,
-                  opacity: 0.5,
-                  marginTop: 4,
-                }}
-              >
-                3.0 (250K Reviews)
-              </Text>
-            </View>
-
-            <View
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 6,
+              backgroundColor: COLORS.tertiary,
+              padding: 6,
+              borderRadius: 100,
+              alignSelf: "flex-end",
+              justifyContent: "space-between",
+              width: "40%",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => setCount((count) => Math.max(1, count - 1))}
               style={{
-                flexDirection: "row",
+                backgroundColor: colors.card,
+                width: 34,
+                aspectRatio: 1,
                 alignItems: "center",
-                gap: 6,
-                backgroundColor: colors.primary,
-                padding: 6,
-                borderRadius: 100,
+                justifyContent: "center",
+                borderRadius: 34,
               }}
             >
-              <TouchableOpacity
-                onPress={() => setCount((count) => Math.max(1, count - 1))}
-                style={{
-                  backgroundColor: colors.card,
-                  width: 34,
-                  aspectRatio: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 34,
-                }}
-              >
-                <Icons name="remove" size={20} color={colors.text} />
-              </TouchableOpacity>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: "600",
-                  color: colors.background,
-                }}
-              >
-                {count}
-              </Text>
-              <TouchableOpacity
-                onPress={() => setCount((count) => Math.min(10, count + 1))}
-                style={{
-                  backgroundColor: colors.card,
-                  width: 34,
-                  aspectRatio: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 34,
-                }}
-              >
-                <Icons name="add" size={20} color={colors.text} />
-              </TouchableOpacity>
-            </View>
+              <Icons name="remove" size={20} color={colors.text} />
+            </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "600",
+                color: colors.background,
+              }}
+            >
+              {count}
+            </Text>
+            <TouchableOpacity
+              onPress={() => setCount((count) => Math.min(10, count + 1))}
+              style={{
+                backgroundColor: colors.card,
+                width: 34,
+                aspectRatio: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 34,
+              }}
+            >
+              <Icons name="add" size={20} color={colors.text} />
+            </TouchableOpacity>
           </View>
 
           <View>
@@ -200,10 +180,7 @@ const ProductDetails = () => {
                   textTransform: "uppercase",
                 }}
               >
-                Model is 6'1'', Size M
-              </Text>
-              <Text style={{ color: colors.text, opacity: 0.5 }}>
-                Size guide
+                Размери
               </Text>
             </View>
 
@@ -215,30 +192,34 @@ const ProductDetails = () => {
                 marginTop: 6,
               }}
             >
-              {SIZES.map((s, i) => (
-                <TouchableOpacity
-                  key={i}
-                  onPress={() => setSize(s)}
-                  style={{
-                    width: 44,
-                    height: 44,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: s === size ? colors.primary : colors.card,
-                    borderRadius: 44,
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: s === size ? colors.card : colors.text,
-                      fontWeight: "600",
-                      fontSize: 16,
-                    }}
-                  >
-                    {s}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+              {data?.attributes &&
+                data.attributes
+                  .find((el) => el.name == "Размер")
+                  .options.map((s, i) => (
+                    <TouchableOpacity
+                      key={i}
+                      onPress={() => setSize(s)}
+                      style={{
+                        width: 44,
+                        height: 44,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor:
+                          s === size ? COLORS.tertiary : colors.card,
+                        borderRadius: 44,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: s === size ? colors.card : colors.text,
+                          fontWeight: "600",
+                          fontSize: 16,
+                        }}
+                      >
+                        {s}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
             </View>
           </View>
 
@@ -251,16 +232,13 @@ const ProductDetails = () => {
                 color: colors.text,
               }}
             >
-              Description
+              Описание
             </Text>
-            <Text
+            <HTML
+              source={{ html: data?.description || "" }}
               style={{ color: colors.text, opacity: 0.75 }}
-              numberOfLines={3}
-            >
-              Aute magna dolore sint ipsum dolor fugiat. Ad magna ad elit labore
-              culpa sunt sint laboris consectetur sunt. Lorem excepteur occaecat
-              reprehenderit nostrud culpa ad ex exercitation tempor.
-            </Text>
+              contentWidth={width}
+            />
           </View>
 
           <View style={{ flex: 1 }} />
@@ -269,18 +247,18 @@ const ProductDetails = () => {
               <Text
                 style={{ color: colors.text, opacity: 0.75, marginBottom: 4 }}
               >
-                Total
+                Цена
               </Text>
               <Text
                 style={{ color: colors.text, fontSize: 18, fontWeight: "600" }}
               >
-                ${(25000).toLocaleString()}
+                {Number(data?.price).toFixed(2)} лв.
               </Text>
             </View>
 
             <TouchableOpacity
               style={{
-                backgroundColor: colors.primary,
+                backgroundColor: COLORS.tertiary,
                 height: 64,
                 borderRadius: 64,
                 alignItems: "center",
@@ -298,7 +276,7 @@ const ProductDetails = () => {
                   paddingHorizontal: 16,
                 }}
               >
-                Add to cart
+                Добави в количка
               </Text>
 
               <View

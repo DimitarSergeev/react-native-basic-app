@@ -57,16 +57,23 @@ const styles = StyleSheet.create({
     marginTop: SIZES.medium,
   },
   tab: (activeJobType, item) => ({
-    paddingVertical: SIZES.small / 2,
-    paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.medium,
+    paddingVertical: SIZES.xLarge / 2,
+    paddingHorizontal: SIZES.xLarge,
+    borderRadius: SIZES.xLarge,
     borderWidth: 1,
     borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
+    backgroundColor: activeJobType === item ? COLORS.tertiary : COLORS.white,
   }),
   tabText: (activeJobType, item) => ({
     fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
+    color: activeJobType === item ? "#FFF" : COLORS.tertiary,
   }),
+  subTitle: {
+    fontSize: SIZES.large,
+    fontFamily: FONT.medium,
+    color: COLORS.primary,
+    paddingBottom: SIZES.medium,
+  },
 });
 
 export default styles;

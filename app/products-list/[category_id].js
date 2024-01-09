@@ -18,7 +18,7 @@ import useFetch from "../../hook/useFetch";
 const ProductList = () => {
   const { category_id } = useLocalSearchParams();
   const router = useRouter();
-  const productPerPage = 1;
+  const productPerPage = 10;
   const [page, setPage] = useState(1);
   const { data, loading, error, refetch } = useFetch(category_id, "products");
   const [pageResults, setPageResults] = useState([]);
@@ -49,7 +49,6 @@ const ProductList = () => {
       setPage(page + 1);
     }
   };
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen

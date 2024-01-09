@@ -16,7 +16,7 @@ import PopularProductCard from "../../common/cards/popular/PopularProductCard";
 import useFetch from "../../../hook/useFetch";
 const PopularProducts = ({ setActiveCategory, activeCategory }) => {
   const router = useRouter();
-  
+  console.log("activeCategory", activeCategory);
   const { data, loading, error, refetch } = useFetch(
     activeCategory,
     "products"

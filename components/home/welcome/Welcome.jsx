@@ -55,17 +55,19 @@ const Welcome = ({
       </View>
 
       <View style={styles.tabsContainer}>
+        <Text style={styles.subTitle}>Категории</Text>
         <FlatList
           data={data}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.tab(activeCategory, item)}
+              style={styles.tab(activeCategory, item.id)}
               onPress={() => {
                 setActiveCategory(item.id);
-                // router.push(`/search/${item}`);
               }}
             >
-              <Text style={styles.tabText(activeCategory, item)}>{item.name}</Text>
+              <Text style={styles.tabText(activeCategory, item.id)}>
+                {item.name}
+              </Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id}

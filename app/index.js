@@ -11,7 +11,7 @@ import {
 } from "../components";
 import useFetch from "../hook/useFetch";
 const Home = () => {
-  const [activeCategory, setActiveCategory] = useState("smartphones");
+  const [activeCategory, setActiveCategory] = useState("");
   const router = useRouter();
   const [search, setSearch] = useState("");
   const { data, loading, error, refetch } = useFetch("", "product_cat");

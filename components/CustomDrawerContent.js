@@ -9,6 +9,7 @@ import { Drawer } from "expo-router/drawer";
 import { useRouter } from "expo-router/src/hooks";
 import { View, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { COLORS } from "../constants";
 
 export default function CustomDrawerContent(props) {
   const router = useRouter();
@@ -20,11 +21,11 @@ export default function CustomDrawerContent(props) {
         {...props}
         scrollEnabled={false}
         contentContainerStyle={{
-          backgroundColor: "#FFD9CC",
+          backgroundColor: COLORS.tertiary,
+          // backgroundColor: "#FFD9CC",
           paddingTop: top,
           height: "100%",
         }}
-        
       >
         {/* <DrawerItemList {...props} /> */}
         <DrawerItem
@@ -34,11 +35,15 @@ export default function CustomDrawerContent(props) {
             <Ionicons
               name="home-outline"
               size={size}
-              color={pathName === "/" ? "#FFF" : color}
+              color={pathName === "/" ? "#000" : "#FFF"}
             />
           )}
-          labelStyle={{ color: pathName === "/" ? "#FFF" : "#000" }}
-          style={{ backgroundColor: pathName === "/" ? "#FF7754" : "#FFD9CC" }}
+          labelStyle={{ color: pathName === "/" ? "#000" : "#FFF" }}
+          style={{
+            backgroundColor: pathName === "/" ? "#FFF" : COLORS.tertiary,
+            borderWidth: pathName === "/" ? 0 : 1,
+            borderColor: "#FFF",
+          }}
         />
         <DrawerItem
           label="Блог"
@@ -47,12 +52,14 @@ export default function CustomDrawerContent(props) {
             <Ionicons
               name="newspaper-outline"
               size={size}
-              color={pathName === "/news" ? "#FFF" : color}
+              color={pathName === "/news" ? "#000" : "#FFF"}
             />
           )}
-          labelStyle={{ color: pathName === "/news" ? "#FFF" : "#000" }}
+          labelStyle={{ color: pathName === "/news" ? "#000" : "#FFF" }}
           style={{
-            backgroundColor: pathName === "/news" ? "#FF7754" : "#FFD9CC",
+            backgroundColor: pathName === "/news" ? "#FFF" : COLORS.tertiary,
+            borderWidth: pathName === "/news" ? 0 : 1,
+            borderColor: "#FFF",
           }}
         />
         <DrawerItem
@@ -62,12 +69,14 @@ export default function CustomDrawerContent(props) {
             <Ionicons
               name="cart-outline"
               size={size}
-              color={pathName === "/cart" ? "#FFF" : color}
+              color={pathName === "/cart" ? "#000" : "#FFF"}
             />
           )}
-          labelStyle={{ color: pathName === "/cart" ? "#FFF" : "#000" }}
+          labelStyle={{ color: pathName === "/cart" ? "#000" : "#FFF" }}
           style={{
-            backgroundColor: pathName === "/cart" ? "#FF7754" : "#FFD9CC",
+            backgroundColor: pathName === "/cart" ? "#FFF" : COLORS.tertiary,
+            borderWidth: pathName === "/cart" ? 0 : 1,
+            borderColor: "#FFF",
           }}
         />
         <DrawerItem
@@ -77,24 +86,41 @@ export default function CustomDrawerContent(props) {
             <Ionicons
               name="person-outline"
               size={size}
-              color={pathName === "/profile" ? "#FFF" : color}
+              color={pathName === "/profile" ? "#000" : "#FFF"}
             />
           )}
-          labelStyle={{ color: pathName === "/profile" ? "#FFF" : "#000" }}
+          labelStyle={{ color: pathName === "/profile" ? "#000" : "#FFF" }}
           style={{
-            backgroundColor: pathName === "/profile" ? "#FF7754" : "#FFD9CC",
+            backgroundColor: pathName === "/profile" ? "#FFF" : COLORS.tertiary,
+            borderWidth: pathName === "/profile" ? 0 : 1,
+            borderColor: "#FFF",
           }}
         />
-        <DrawerItem label="Изход" onPress={() => router.push("/")} />
+        <DrawerItem
+          label="Изход"
+          icon={({ size, color }) => (
+            <Ionicons
+              name="exit-outline"
+              size={size}
+              color={pathName === "/profile" ? "#000" : "#FFF"}
+            />
+          )}
+          onPress={() => router.push("/")}
+          labelStyle={{ color: "#FFF" }}
+          style={{
+            borderWidth: 1,
+            borderColor: "#FFF",
+          }}
+        />
       </DrawerContentScrollView>
       <View
         style={{
           padding: 20,
           paddingBottom: 20 + bottom,
-          backgroundColor: "#FFD9CC",
+          backgroundColor: COLORS.tertiary,
         }}
       >
-        <Text>Footer</Text>
+        <Text style={{ color: "#FFF" }}>Footer</Text>
       </View>
     </View>
   );

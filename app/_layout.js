@@ -5,6 +5,7 @@ import { Drawer } from "expo-router/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import CustomDrawerContent from "../components/CustomDrawerContent";
+import { COLORS } from "../constants";
 SplashScreen.preventAutoHideAsync();
 
 const Layout = () => {
@@ -29,7 +30,7 @@ const Layout = () => {
         drawerContent={CustomDrawerContent}
         screenOptions={{
           drawerActiveTintColor: "#fff",
-          drawerActiveBackgroundColor: "#FF7754",
+          drawerActiveBackgroundColor: COLORS.tertiary,
         }}
         
       ></Drawer>

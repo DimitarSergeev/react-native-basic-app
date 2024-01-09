@@ -27,14 +27,6 @@ const navigation = useNavigation();
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerRight: () => (
-            <ScreenHeaderBtn
-              iconUrl={icons.menu}
-              dimension="60%"
-              handlePress={() => navigation.openDrawer()}
-            />
-          ),
-        
           headerTitle: "",
         }}
       />

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { COLORS } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "../../../constants";
 
 const DropDown = ({ data,label }) => {
     const [isFocus, setIsFocus] = useState(false);

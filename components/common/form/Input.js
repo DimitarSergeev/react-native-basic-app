@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { View, Text, TextInput } from "react-native";
-import { COLORS } from "../../constants";
 import { useState } from "react";
+import { COLORS } from "../../../constants";
 
 const Input = ({ label, icon, onFocus }) => {
   const [isFocused, setIsFocused] = useState(false);

@@ -10,8 +10,8 @@ import {
 import { COLORS, images, icons, SIZES, FONT } from "../constants";
 import { ScreenHeaderBtn } from "../components";
 import { Stack, useNavigation } from "expo-router";
-import Input from "../components/cart/Input";
-import DropDown from "../components/cart/Dropdown";
+import Input from "../components/common/form/Input";
+import DropDown from "../components/common/form/Dropdown";
 
 const Cart = () => {
   //   <Ionicons name="trash-outline" size={24} color="Black" />
@@ -33,13 +33,7 @@ const Cart = () => {
           options={{
             headerStyle: { backgroundColor: COLORS.lightWhite },
             headerShadowVisible: false,
-            headerRight: () => (
-              <ScreenHeaderBtn
-                iconUrl={icons.menu}
-                dimension="60%"
-                handlePress={() => navigation.openDrawer()}
-              />
-            ),
+           
 
             headerTitle: "",
           }}

@@ -31,6 +31,7 @@ const Layout = () => {
         screenOptions={{
           drawerActiveTintColor: "#fff",
           drawerActiveBackgroundColor: COLORS.tertiary,
+          
         }}
         
       ></Drawer>
